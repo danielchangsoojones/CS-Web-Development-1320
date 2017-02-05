@@ -1,0 +1,43 @@
+/* The section below completes exercise 2, task 1 */
+div {
+    height: 50px;
+    width: 50px;
+    margin: 20px;
+}
+
+#divOne {
+    background-color: aqua;
+    /* It would display the div like any block element, so it would look similar to how a <p> tag would work, and it would be on its own row */
+    display: block;
+}
+
+#divTwo {
+    background-color: blueviolet;
+    /* It would display the div like any list-item, so it will put a bullet point in front of it*/
+    display: list-item;
+}
+
+#divThree {
+    background-color: greenyellow;
+    /* It would display the div like any table element, so when rendered, it actually grows to fit the size of the word content*/
+    display: table;
+}
+
+#divFour {
+    background-color: magenta;
+    /* It would display the div with a height that fits onto the lettering, and if it were placed next to other elements, it would go side-by-side with them. As obvious as it sounds, it puts the div in-line with any other elements. */
+    display: inline;
+}
+
+/* The section below completes exercise 2, task 2 */
+@media screen and (max-width: 300px){
+    #mediaQuery{
+	font-size: 120pt;
+    }
+}
+
+@media screen and (min-width: 600px){
+    #mediaQuery{
+	font-size: 48pt;
+    }
+}
