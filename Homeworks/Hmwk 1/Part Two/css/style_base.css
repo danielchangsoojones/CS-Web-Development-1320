@@ -178,6 +178,7 @@ body {
 #left-panel-float h2 {
     margin-top: 20px;
     margin-left: 20px;
+    font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #left-panel-float li {
@@ -186,6 +187,7 @@ body {
 
 #left-panel-float a {
     color: #F26E00;
+    font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #left-panel-float h2 {
