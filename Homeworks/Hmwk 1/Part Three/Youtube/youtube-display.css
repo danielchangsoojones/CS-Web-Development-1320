@@ -1,0 +1,18 @@
+.youtube-group h1 {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.youtube-frame {
+    margin-right: auto;
+    margin-left: auto;
+    display:block;
+}
+
+.youtube-group p {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
