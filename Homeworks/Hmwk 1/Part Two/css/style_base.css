@@ -118,6 +118,8 @@ body {
 }
 
 .icon_column h3 {
+    font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
     text-align: center;
     position: relative;
     left: 0;
@@ -126,6 +128,7 @@ body {
 }
 
 .icon_column p {
+    color: #EAE8EB;
     text-align: center;
     margin-top: 10px;
 }
@@ -147,6 +150,7 @@ body {
 }
 
 #sign-up_button-panel * {
+    color: #EAE8EB;
     display: inline-block;
 }
 
@@ -195,13 +199,16 @@ body {
 }
 
 #right-panel-content h3 {
+    font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
     color: black;
+    font-size: 23px;
     text-align: left;
     margin-top: 20px;
     margin-left: 20px;
 }
 
 #right-panel-content p {
+    font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
     color: black;
     text-align: left;
     margin-top: 20px;
@@ -236,7 +243,7 @@ body {
 
 #footer_nav_wrapper li {
     display: inline;
-    
+    font-family: "ff-dagny-web-pro-bold","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #footer_nav_wrapper a {
