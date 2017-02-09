@@ -51,9 +51,10 @@ body {
 #header_wrapper {
     background-color: #F37200;
     position: fixed;
-    width: 1000px;
+    width: 1040px;
     height: 55px;
     top: 0px;
+    z-index: 5;
 }
 
 #top_nav {
@@ -92,31 +93,9 @@ body {
     margin-top: 100px;
 }
 
-#picture_panel {
-    background-color: red;
-}
-
 #picture_panel h2 {
     font-family:"ff-dagny-web-pro-light","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 33px;
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
-.home_icons {
-    background-color: blue;
-}
-
-.home_icons div {
-    background-color: green;
-    display: inline-block;
-    width: 300px;
-}
-
-div h3 {
     text-align: center;
     position: relative;
     left: 0;
@@ -124,34 +103,47 @@ div h3 {
     margin: auto;
 }
 
-div p {
-    text-align: center;
+.home_icons {
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
-#picture_panel div a {
-/*
-    margin-left: auto;
-    margin-right: auto;
-    width: 75px;
-*/
-/*    position: relative;*/
-/*
+.home_icons div {
+    display: inline-block;
+    width: 300px;
+}
+
+.home_icons div + div {
+    margin-left: 30px;
+}
+
+.icon_column h3 {
+    text-align: center;
+    position: relative;
     left: 0;
     right: 0;
     margin: auto;
-*/
+}
+
+.icon_column p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.learn_more {
+    display:block;
     color: white;
     text-decoration: none;
     background-color: #565755;
     padding: 3px 10px 3px 10px;
+    margin-top: 10px;
 }
 
 /*the grey bar*/
 #sign-up_button-panel {
     background-color: #242424;
     height: 120px;
-    display: table-cell;
-    vertical-align: middle;
+    margin-top: 50px;
 }
 
 #sign-up_button-panel * {
@@ -160,6 +152,11 @@ div p {
 
 #sign-up_button-panel * + * {
     margin-left: 50px;
+}
+
+#sign-up_button-panel :first-child {
+    margin-left: 200px;
+    margin-top: 50px;
 }
 
 /*Find us on the web */
@@ -209,6 +206,7 @@ div p {
     text-align: left;
     margin-top: 20px;
     margin-left: 20px;
+    margin-right: 70px;
 }
 
 #right-panel-content p + p {
@@ -219,24 +217,26 @@ div p {
 #footer_nav {
     border-top-style: solid;
     border-top-color: gray;
-    border-top-width: thick;
+    border-top-width: 3px;
 }
 
 #footer_nav_wrapper {
     background-color: #EEEEEE;
     height: 55px;
     clear: both;
-    margin-top: -16px;
+    position:relative;
 }
 
-/*
 #footer_nav_wrapper ul {
-    margin: 0 auto;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-*/
 
 #footer_nav_wrapper li {
     display: inline;
+    
 }
 
 #footer_nav_wrapper a {
