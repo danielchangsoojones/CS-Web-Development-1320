@@ -214,6 +214,10 @@ body {
     background-position: 0 0;
 }
 
+.learn_more:hover {
+    background-position: 0px 20px;
+}
+
 /*the grey bar*/
 #sign-up_button-panel {
     background-color: #242424;
@@ -241,6 +245,10 @@ body {
     height: 57px;
     width: 268px;
     color: transparent;
+}
+
+#plan_and_pricing_large:hover {
+    background-position: 268 0;
 }
 
 /*Find us on the web */
