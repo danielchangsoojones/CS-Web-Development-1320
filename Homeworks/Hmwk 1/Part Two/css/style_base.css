@@ -49,7 +49,7 @@ body {
 
 /*css for the navigation bar*/
 #header_wrapper {
-    background-color: #F37200;
+    background-image: url(../images/bg_header.gif);
     position: fixed;
     width: 1040px;
     height: 55px;
@@ -58,33 +58,79 @@ body {
 }
 
 #top_nav {
-    display: inline;
+    display: inline-block;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 15px;
 }
 
 #header_wrapper a {
-    color: white;
     text-decoration: none;
 }
 
 #top_nav li + li {
-    margin-left: 25px;
+    /*margin-left: 25px;*/
 }
 
 #top_nav li {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: inline;
+    display: inline-block;
     font-family:"ff-dagny-web-pro-1","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: url(../images/navigation.png);
+    height: 50px;
+}
+
+#top_nav a {
+    color: transparent;
 }
 
 #logo {
-    font-family:"ff-dagny-web-pro-1","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
     display: inline-block;
     margin-left: 50px;
     position: relative;
+/*
     top: 50%;
     transform: translateY(-50%);
+*/
+    background-image: url(../images/logo.png);
+    color: transparent;
+}
+
+#logo a {
+    color: transparent;
+}
+
+#nav_features {
+    width: 90px;
+    background-position: 0 0;
+}
+
+#nav_pricing {
+    width: 80px; 
+    background-position: -91px 0;
+}
+
+#nav_add-ons {
+    width: 90px; 
+    background-position: -172px 0;
+}
+
+#nav_customers {
+    width: 105px; 
+    background-position: -437px 0;
+}
+
+#nav_about {
+    width: 72px; 
+    background-position: -263px 0;
+}
+
+#nav_blog {
+    width: 65px; 
+    background-position: -543px 0;
 }
 
 /*the content*/
@@ -117,6 +163,10 @@ body {
     margin-left: 30px;
 }
 
+.icon_column {
+    text-align: center;
+}
+
 .icon_column h3 {
     font-family: "ff-dagny-web-pro-2","ff-dagny-web-pro-2","Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 24px;
@@ -134,12 +184,19 @@ body {
 }
 
 .learn_more {
-    display:block;
+/*    display:block;*/
     color: white;
     text-decoration: none;
-    background-color: #565755;
+    position: relative;
+    margin-top: 10px;
+    
+    
+/*
     padding: 3px 10px 3px 10px;
     margin-top: 10px;
+*/
+    background-image: url("../images/learn-more.png");
+    background-position: 0 0;
 }
 
 /*the grey bar*/
@@ -161,6 +218,13 @@ body {
 #sign-up_button-panel :first-child {
     margin-left: 200px;
     margin-top: 50px;
+}
+
+#plan_and_pricing_large {
+    background-image: url(../images/cta.png);
+    background-position: 0 0;
+    height: 57px;
+    width: 268px;
 }
 
 /*Find us on the web */
