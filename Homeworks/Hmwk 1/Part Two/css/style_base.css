@@ -204,9 +204,10 @@ body {
 }
 
 .learn_more {
+    margin-left: -50px;
     color: white;
     text-decoration: none;
-    position: relative;
+    position: absolute;
     margin-top: 10px;
     color: transparent;
     padding-left: 7px;
@@ -236,7 +237,10 @@ body {
 
 #sign-up_button-panel :first-child {
     margin-left: 200px;
-    margin-top: 50px;
+}
+
+#sign-up_button-panel h4 {
+    padding-top:50px;
 }
 
 #plan_and_pricing_large {
@@ -248,7 +252,7 @@ body {
 }
 
 #plan_and_pricing_large:hover {
-    background-position: 268 0;
+    background-position: 268px 0px;
 }
 
 /*Find us on the web */
@@ -344,9 +348,4 @@ body {
 #footer_nav_wrapper li + li {
     margin-left: 50px;
 }
-
-
-
-
-
 
