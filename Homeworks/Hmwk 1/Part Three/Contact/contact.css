@@ -1,0 +1,64 @@
+.contact-area {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.contact-text {
+    display: inline-block;
+    width: 30%;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.contact-message p {
+    margin-top: 10px;
+    line-height: 180%;
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info ul {
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+.contact-forms {
+    display: inline-block;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.contact-forms label {
+    display:block;
+    margin-top:20px;
+    letter-spacing:2px;
+}
+
+/* Style the text boxes */
+/*this website helped me to style the text-boxes to look like a real websites,, and then I altered things to fit my needs http://tangledindesign.com/how-to-create-a-contact-form-using-html5-css3-and-php/ */
+.contact-forms input, textarea {
+	width:439px;
+	height:27px;
+	background:#efefef;
+	border:1px solid #dedede;
+	padding:10px;
+	margin-top:3px;
+	font-size:0.9em;
+	color:#3a3a3a;
+}
+
+textarea {
+	height:213px;
+}
+
+#submit {
+    width:127px;
+    height:38px;
+    background-color: blue;
+    color: white;
+    border:none;
+    margin-top:20px;
+}
+
