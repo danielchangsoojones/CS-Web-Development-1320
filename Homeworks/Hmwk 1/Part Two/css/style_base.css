@@ -91,10 +91,6 @@ body {
     display: inline-block;
     margin-left: 50px;
     position: relative;
-/*
-    top: 50%;
-    transform: translateY(-50%);
-*/
     background-image: url(../images/logo.png);
     color: transparent;
 }
@@ -108,9 +104,17 @@ body {
     background-position: 0 0;
 }
 
+#nav_features:hover {
+    background-position: 0 59px;
+}
+
 #nav_pricing {
     width: 80px; 
     background-position: -91px 0;
+}
+
+#nav_pricing:hover {
+    background-position: -91px 59px;
 }
 
 #nav_add-ons {
@@ -118,9 +122,17 @@ body {
     background-position: -172px 0;
 }
 
+#nav_add-ons:hover {
+    background-position: -172px 59px;
+}
+
 #nav_customers {
     width: 105px; 
     background-position: -437px 0;
+}
+
+#nav_customers:hover {
+    background-position: -437px 59px;
 }
 
 #nav_about {
@@ -128,9 +140,17 @@ body {
     background-position: -263px 0;
 }
 
+#nav_about:hover {
+    background-position: -263px 59px;
+}
+
 #nav_blog {
     width: 65px; 
     background-position: -543px 0;
+}
+
+#nav_blog:hover {
+    background-position: -543px 59px;
 }
 
 /*the content*/
