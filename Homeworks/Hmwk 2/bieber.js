@@ -71,14 +71,7 @@ function addTweet() {
     var stream = document.getElementById("stream");
     var tweet = document.getElementsByClassName("tweet");
     console.log(tweet[0]);
-    stream.appendChild(<div class="tweet">
-            <div class="content"> <img class="avatar" src="img/damenleeturks.jpg" /> 
-                <strong class="fullname">My BFF</strong> 
-                <span class="username">@mybff</span>
-                <p class="tweet-text">Today is an amazing day.</p>
-            </div>
-        </div>);
-    )
+    stream.appendChild(tweet[0]);
 //   stream.insertBefore(tweet, tweet);
     
     console.log(tweet);
