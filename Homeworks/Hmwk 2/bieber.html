@@ -12,30 +12,31 @@
 <body>
 
 <!--
+this stuff is for testing my code 
     <h2>Let AJAX change this text</h2>
   <button type="button" onclick="loadDoc()">Change Content</button>
 -->
 <div id="page-container">
-			<div id="main">
-				<h2>Tweets</h2>
-				<div id="stream">
-
-					<!-- HINT: jQuery ".prepend" method -->
-					<div class="tweet">
-						<div class="content">
-							<img class="avatar" src="img/damenleeturks.jpg" />
-							<strong class="fullname">My BFF</strong>
-                            <span class="username">@mybff</span>
-
-							<p class="tweet-text">Today is an amazing day.</p>
-                        </div>
-                    </div> <!-- #tweet -->
-                    
-                    
-
-				</div><!-- #stream -->
-			</div><!-- #main -->
-		</div><!-- #page-container -->
+    <div id="main">
+        <div id = "top-bar">
+            <h2>Tweets</h2>
+            <input type="checkbox" id="cbox2" value="second_checkbox" onclick='handleClick(this);'> <label for="cbox2">Start</label>
+        </div>
+        
+        
+        <div id="stream">
+        <!-- HINT: jQuery ".prepend" method -->
+        <div class="tweet">
+            <div class="content"> <img class="avatar" src="img/damenleeturks.jpg" /> 
+                <strong class="fullname">My BFF</strong> 
+                <span class="username">@mybff</span>
+                <p class="tweet-text">Today is an amazing day.</p>
+            </div>
+        </div><!-- #tweet -->
+            
+        </div><!-- #stream -->
+    </div><!-- #main -->
+</div><!-- #page-container -->
 
 
 </body>
