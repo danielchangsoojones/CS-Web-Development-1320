@@ -1,0 +1,66 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+/* I found this reset script that works great to allow me to start from scratch instead of it default adding in things*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/*I based the css for my page off of https://github.com/DevMountain/twitter-clone. And, then I took modified it to fit my needs for the website. I only needed the twitter boxes, none of the form stuff.*/
+body {
+	background-repeat: no-repeat;
+	background-color: #1DA1F2;
+	font-family: "Helvetica Neue",Arial,sans-serif;
+}
+
+/* GLOBAL ELEMENTS */
+.avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 4px;
+}
+
+/* PAGE STRUCTURE */
+#page-container {
+	padding: 54px 14px 15px;
+	margin: 0 auto;
+	width: 95%;
+}
+#main {
+	float: right;
+	width: 95%;
+	background-color: white;
+	border-radius: 6px;
+}
+	#main h2 {
+		font-size: 18px;
+		padding: 12px;
+		border-bottom: 1px solid #e8e8e8;
+	}
+
+
+
+/* TWEET */
+.tweet {
+	clear: both;
+	padding: 9px 12px;
+	border-bottom: 1px solid #e8e8e8;
+	min-height: 60px;
+	border-radius: 6px;
+}
+
+	.tweet .avatar {
+		float: left;
+		margin-right: 10px;
+	}
+	.tweet .fullname {
+		font-size: 14px;
+	}
+	.tweet .username {
+		font-size: 12px;
+		color: #999;
+	}
+	.tweet-text {
+		font-size: 14px;
+		color: #333;
+		margin: 10px 0;
+		padding-left: 42px;
+	}
+
+
