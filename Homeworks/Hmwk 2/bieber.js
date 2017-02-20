@@ -1,47 +1,65 @@
 var URL = 'http://ec2-54-210-131-157.compute-1.amazonaws.com/feed/:djones14'
+var count = 0;
+var interval;
 
-
+//liek viewDidLoad for iOS
+$( document ).ready(function() {
+    startInterval();
+});
 
 function makeRequest(URL, callback) {
     console.log("making a request");
      $.get(URL, function(data, status) {
-      if (status === "success") {
-         // do something with data
-          console.log(data);
-      } else {
-         // something went wrong, check status
-      }
+         console.log(data);
+      displayTweets(data, status);
    });
 }
 
-function handleClick(cb) {
-    console.log("clicked!!!!!");
-//    makeRequest();
-    addTweet();
+function displayTweets(tweets) {
+    for (i = 0; i < tweets.length; i++) {
+        if (count >= 26) {
+            console.log("removing tweet");
+            removeTweet();
+        } else {
+            count++;
+        }
+        
+        var tweet = tweets[i];
+        var name = tweet["user"]["name"];
+        var text = tweet["text"];
+        addTweet(name, text);
+    }
 }
 
-function addTweet() {
-     var stream = $('#stream');
-    var str = 'hi'
-    var name = $('<p>' + str + '</p>');
-    
+function handleClick(cb) {
+    if (cb.checked) {
+        //start
+        startInterval();
+    } else {
+        //stop
+        clearInterval(interval);
+    }
+}
 
-//    <div class="tweet">
-//            <div class="content"> <img class="avatar" src="img/damenleeturks.jpg" /> 
-//                <strong class="fullname">My BFF</strong> 
-//                <span class="username">@mybff</span>
-//                <p class="tweet-text">Today is an amazing day.</p>
-//            </div>
-//    </div>
+function startInterval() {
+    interval = setInterval(function(){ makeRequest(URL, "hi") }, 3000);
+}
+
+function addTweet(name, text) {
+     var stream = $('#stream');
                 
-    var tweet = $("<p>hi</p>").addClass("content");
-    stream.append(tweet);
+    var tweet = $("<div></div>").addClass("tweet");
+    var content = $("<content></content>").addClass("content");
+    tweet.append(content);
     
-//    name.append()
-//    
-//     stream.append($('<p>' + str + '<p>').addClass("parry"))
+    var img = $('<img class="avatar" src="img/damenleeturks.jpg" />');
+    var name = $('<strong class="fullname">' + name + '</strong>');
+    var text = $('<p class="tweet-text">' + text + '</p>');
+    content.append(img);
+    content.append(name);
+    content.append(text);
     
-    console.log(tweet);
+    stream.prepend(tweet);
 }
 
 function removeTweet() {
