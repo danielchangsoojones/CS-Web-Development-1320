@@ -1,3 +1,4 @@
+var room = getQueryVariable("room");
 var username = window.prompt("enter a username/nickname");
 var socket = io();
 
@@ -8,6 +9,10 @@ $(document).ready(function() {
 //establishing socket connection
 socket.on("connect", function() {
     console.log("successfully connected to socket io");
+    socket.emit("joinRoom", {
+        name: username,
+        room: room
+    });
 });
 
 //recieving a new message
@@ -24,13 +29,13 @@ $form.on("submit", function(event) {
     event.preventDefault();
     socket.emit("message", {
         name: username,
+        room: room,
         text: $form.find('input[name="message"]').val()
     });
 });
 
 //show the chatroom name at the start of the messages
 function showChatRoomName() {
-    var room = getQueryVariable("room");
     var $message = jQuery(".messages");
     $message.append("<h1> Chat Room " + room + '</h1>');
 }
