@@ -1,6 +1,8 @@
-var name = getQueryVariable("name") || "Anonymous";
+var username = window.prompt("enter a username/nickname");
 var room = getQueryVariable("room");
 var socket = io();
+
+
 
 //establishing socket connection
 socket.on("connect", function() {
@@ -20,7 +22,7 @@ var $form = jQuery("#message-form");
 $form.on("submit", function(event) {
     event.preventDefault();
     socket.emit("message", {
-        name: name,
+        name: username,
         text: $form.find('input[name="message"]').val()
     });
 });
