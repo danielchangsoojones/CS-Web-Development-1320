@@ -1,8 +1,9 @@
 var username = window.prompt("enter a username/nickname");
-var room = getQueryVariable("room");
 var socket = io();
 
-
+$(document).ready(function() { 
+    showChatRoomName();                         
+});
 
 //establishing socket connection
 socket.on("connect", function() {
@@ -26,3 +27,10 @@ $form.on("submit", function(event) {
         text: $form.find('input[name="message"]').val()
     });
 });
+
+//show the chatroom name at the start of the messages
+function showChatRoomName() {
+    var room = getQueryVariable("room");
+    var $message = jQuery(".messages");
+    $message.append("<h1> Chat Room " + room + '</h1>');
+}

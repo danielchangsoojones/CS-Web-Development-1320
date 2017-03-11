@@ -14,10 +14,6 @@ io.on("connection", function(socket) {
     socket.on("message", function(message) {
         io.emit("message", message);
     });
-    
-//    socket.emit("message", {
-//        text: "Welcome to the chat application"
-//    });
 });
 
 var PORT = 8080;
