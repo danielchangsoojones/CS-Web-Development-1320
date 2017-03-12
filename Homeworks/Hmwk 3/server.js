@@ -76,3 +76,31 @@ function generateRoomIdentifier() {
 
   return result;
 }
+
+//loading messages
+app.get('/message', function(req, res){
+    var chatRoom = req.query.name;
+    db.message.findAll({
+        where: {
+            room: chatRoom
+        }
+    }).then(function(messages) {
+        res.json(messages);
+    }, function(error) {
+        res.status(400).json(error);
+    });
+});
+
+//saving message
+app.post("/message", function(req, res) {
+    console.log(req);
+    db.message.create({
+        room: req.query.room,
+        username: req.query.username,
+        body: req.query.text
+    }).then(function(message) {
+        res.json(message);
+    }, function(error) {
+        res.status(400).json(error);
+    });
+})
