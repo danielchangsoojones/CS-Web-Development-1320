@@ -1,6 +1,7 @@
 var express = require('express')
 var app = express();
 var http = require('http').Server(app);
+var db = require("./public/database/db.js");
 
 //using socket io to refresh the messages. This is better than repeating queries every 5 seconds because it does not produce unneeded queries, and it also updates immediately. 
 var io = require("socket.io")(http);
@@ -29,7 +30,33 @@ io.on("connection", function(socket) {
     });
 });
 
-var PORT = 8080;
-http.listen(PORT, function() {
-    console.log("server started");
+db.sequelize.sync().then(function() {
+	var PORT = 8080;
+    http.listen(PORT, function() {
+        console.log("server started");
+    });
 });
+
+app.post('/chatRoom', function(req, res){
+    saveChatRoom().then(function (chatRoom) {
+        res.json(chatRoom.toJSON());
+    }, function(error) {
+        res.status(400).json(error);
+        console.log(error);
+    });
+});
+
+function saveChatRoom() {
+    return new Promise(function(resolve, reject) {
+        db.chatRoom.create({}).then(function(chatRoom) {
+        resolve(chatRoom);
+    }).catch(function(error) {
+        console.log(error);
+        var errorType = error.errors[0].type
+        if (errorType == "unique violation") {
+            //if the chat room name is not unique, then we recursively save a chatRoom, until a new identifier that is unique is accepted. From a probability standpoint this shouldn't have to run more than once or twice because the chances of producing the same 6 length string twice in a row is astronomically low.
+            resolve(saveChatRoom());
+        }
+    });
+    });
+}
