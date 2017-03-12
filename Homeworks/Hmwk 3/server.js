@@ -48,7 +48,10 @@ app.post('/chatRoom', function(req, res){
 
 function saveChatRoom() {
     return new Promise(function(resolve, reject) {
-        db.chatRoom.create({}).then(function(chatRoom) {
+        //the chatRoom data schema requires uniquness from the name field, so it will throw an error if the name is not unique.
+        db.chatRoom.create({
+            name: generateRoomIdentifier()
+        }).then(function(chatRoom) {
         resolve(chatRoom);
     }).catch(function(error) {
         console.log(error);
@@ -59,4 +62,17 @@ function saveChatRoom() {
         }
     });
     });
+}
+
+//this function was provided by the CS 1320 class website
+function generateRoomIdentifier() {
+  // make a list of legal characters
+  // we're intentionally excluding 0, O, I, and 1 for readability
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+  var result = '';
+  for (var i = 0; i < 6; i++)
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+
+  return result;
 }
