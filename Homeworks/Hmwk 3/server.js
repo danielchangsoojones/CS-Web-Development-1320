@@ -8,7 +8,7 @@ var io = require("socket.io")(http);
 
 app.use(express.static(__dirname + "/public"));
 
-//for remembering the data of a room. SO, it holds the unique id that socket gives then we can retrieve name and room from that.
+//for remembering the data of a room. SO, it holds the unique id that socket gives then we can retrieve name and room from that. This is basically a cache for the messages, and we are also saving the messages permanently into the database. 
 var clientInfo = {};
 
 io.on("connection", function(socket) {
@@ -49,6 +49,7 @@ app.post('/chatRoom', function(req, res){
 function saveChatRoom() {
     return new Promise(function(resolve, reject) {
         //the chatRoom data schema requires uniquness from the name field, so it will throw an error if the name is not unique.
+        //the Sequelize npm module protects against sql injections inherently. the chatroom is created as an object which has validators. If an sql injection were passed, then the object would not be able to be created, hence blocking the sql injection.
         db.chatRoom.create({
             name: generateRoomIdentifier()
         }).then(function(chatRoom) {
@@ -80,6 +81,7 @@ function generateRoomIdentifier() {
 //loading messages
 app.get('/message', function(req, res){
     var chatRoom = req.query.name;
+    //the Sequelize npm module protects against sql injections inherently. The room is run through validators to make sure that it is not an injection. 
     db.message.findAll({
         where: {
             room: chatRoom
@@ -94,6 +96,7 @@ app.get('/message', function(req, res){
 //saving message
 app.post("/message", function(req, res) {
     console.log(req);
+    //the Sequelize npm module protects against sql injections inherently. the message is created as an object which has validators. If an sql injection were passed, then the object would neot be able to be created, hence blocking the sql injection. 
     db.message.create({
         room: req.query.room,
         username: req.query.username,
