@@ -3,7 +3,8 @@ var username = window.prompt("enter a username/nickname");
 var socket = io();
 
 $(document).ready(function() { 
-    showChatRoomName(); 
+    showChatRoomName();
+    createNickname();
     loadPreviousMessages();
 });
 
@@ -18,7 +19,6 @@ socket.on("connect", function() {
 
 socket.on("join", function(join) {
     addMessage(join);
-    setUsers(join.users);
 });
 
 //recieving a new message
@@ -43,6 +43,7 @@ $form.on("submit", function(event) {
         text: $form.find('input[name="message"]').val()
     });
     saveMessage();
+    
 });
 
 function saveMessage() {
@@ -61,7 +62,6 @@ function showChatRoomName() {
 
 function loadPreviousMessages() {
     $.get("/message?name=" + room, function(data, status){
-        console.log("cutttie");
         if (status == 400) {
             alert("there was an error: " + data);
         } else {
@@ -88,9 +88,54 @@ socket.on("removeUser", function(req) {
 function setUsers(users) {
     var $username = jQuery(".users");
     //reset html elements
-    $( ".hello" ).remove();
+    $( ".usernames" ).remove();
     for (i = 0; i < users.length; i++) {
         var user = users[i];
-        $username.append('<h3 class="hello">' + user + '</h3>');
+        console.log(user);
+        console.log(user.username);
+        $username.append('<h3 class="usernames">' + user.username + '</h3>');
     }
+}
+
+//updating/saving/retrieving a nickname
+function createNickname() {
+    $.post("/user?username=" + username + "&room=" + room, function(data, status){
+        if (status == 400) {
+            alert("there was an error: " + data);
+        } else {
+            getNicknames();
+        }
+    });
+}
+
+socket.on("nicknameChanged", function(message) { 
+    console.log("changing nicknameeee");
+    getNicknames();
+});
+
+function getNicknames() {
+    $.get("/user?room=" + room + "&username=" + username, function(data, status){
+        if (status == 400) {
+            alert("there was an error: " + data);
+        } else {
+            //successful
+            console.log(data);
+            setUsers(data);
+        }
+    });
+}
+
+function changeNickname() {
+    var newUsername = window.prompt("enter a new username/nickname");
+    $.ajax({
+        url: "/user?room=" + room + "&newUsername=" + newUsername + "&oldUsername=" + username,
+        type: 'PUT',
+        success: function(result) {
+            socket.emit("nicknameChanged", {
+                oldUsername: username,
+                newUsername: newUsername,
+            });
+        }
+    });
+    username = newUsername;
 }

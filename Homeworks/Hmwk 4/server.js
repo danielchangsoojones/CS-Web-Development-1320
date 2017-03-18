@@ -54,18 +54,15 @@ io.on("connection", function(socket) {
         io.to(clientInfo[socket.id].room).emit("message", message);
     });
     
-    // an error occured with sockets
-    socket.on('error', function(){
-        // tells the chatroom that an error has occured.
+    socket.on("nicknameChanged", function(req) {
         var room = clientInfo[socket.id].room;
         io.to(room).emit("message", {
-            name: "Error",
+            name: "Username Change:",
             room: room,
-            text: "An error has occurred"
+            text: req.oldUsername + " changed their nickname to " + req.newUsername
         });
-        console.log("socket error occurred");
+        io.to(room).emit("nicknameChanged", {});
     });
-
 });
 
 db.sequelize.sync().then(function() {
@@ -133,7 +130,6 @@ app.get('/message', function(req, res){
 
 //saving message
 app.post("/message", function(req, res) {
-    console.log(req);
     //the Sequelize npm module protects against sql injections inherently. the message is created as an object which has validators. If an sql injection were passed, then the object would neot be able to be created, hence blocking the sql injection. 
     db.message.create({
         room: req.query.room,
@@ -144,4 +140,50 @@ app.post("/message", function(req, res) {
     }, function(error) {
         res.status(400).json(error);
     });
-})
+});
+
+//updating/creating users
+app.get('/user', function(req, res){
+    var chatRoom = req.query.room;
+    //the Sequelize npm module protects against sql injections inherently. The room is run through validators to make sure that it is not an injection. 
+    db.user.findAll({
+        where: {
+            room: chatRoom
+        }
+    }).then(function(users) {
+        res.json(users);
+    }, function(error) {
+        res.status(400).json(error);
+    });
+});
+
+app.post("/user", function(req, res) {
+    //the Sequelize npm module protects against sql injections inherently. the message is created as an object which has validators. If an sql injection were passed, then the object would neot be able to be created, hence blocking the sql injection. 
+    db.user.create({
+        room: req.query.room,
+        username: req.query.username
+    }).then(function(user) {
+        res.json(user);
+    }, function(error) {
+        res.status(400).json(error);
+    });
+});
+
+app.put('/user', function(req, res) {
+    var chatRoom = req.query.room;
+    var oldUsername = req.query.oldUsername;
+    var newUsername = req.query.newUsername;
+    
+    db.user.update({
+        username: newUsername,
+    }, {
+        where: {
+            username: oldUsername,
+            room: chatRoom
+        }
+    }).then(function(user) {
+        res.json(user);
+    }, function(error) {
+        res.status(400).json(error);
+    });
+});
