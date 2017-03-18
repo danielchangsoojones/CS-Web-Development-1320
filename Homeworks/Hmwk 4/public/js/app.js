@@ -80,15 +80,7 @@ function loadMessagesIntoUI(data) {
     }
 }
 
-//loading the current users for the chatroom
-//function addUsers(users) {
-//    for (i = 0; i < users.length; i++) {
-//        var user = users[i];
-//        var $username = jQuery(".users");
-//        $username.append("<p><strong>" + user + '</strong></p>');
-//    }
-//}
-
+//loading/removing the current users for the chatroom
 socket.on("removeUser", function(req) {
     setUsers(req.users);
 });
