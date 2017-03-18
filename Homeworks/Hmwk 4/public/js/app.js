@@ -18,7 +18,7 @@ socket.on("connect", function() {
 
 socket.on("join", function(join) {
     addMessage(join);
-    addUser(join.user);
+    addUsers(join.users);
 });
 
 //recieving a new message
@@ -81,7 +81,10 @@ function loadMessagesIntoUI(data) {
 }
 
 //loading the current users for the chatroom
-function addUser(user) {
-    var $username = jQuery(".users");
-    $username.append("<p><strong>" + user + '</strong></p>');
+function addUsers(users) {
+    for (i = 0; i < users.length; i++) {
+        var user = users[i];
+        var $username = jQuery(".users");
+        $username.append("<p><strong>" + user + '</strong></p>');
+    }
 }
