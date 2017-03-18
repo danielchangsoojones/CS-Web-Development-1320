@@ -11,9 +11,6 @@ app.use(express.static(__dirname + "/public"));
 //for remembering the data of a room. SO, it holds the unique id that socket gives then we can retrieve name and room from that. This is basically a cache for the messages, and we are also saving the messages permanently into the database. 
 var clientInfo = {};
 
-//for remembering the users of a room. It holds a dictionary of [ROOMID : [Usernames]]. Whenever a user joins a room, they get added to a certain room's array, and whenever they leave the room. Therefore, it is room specific, not all users will be listed
-var userInfo = {};
-
 io.on("connection", function(socket) {
     console.log("user connected via socket.io");
     
@@ -21,17 +18,10 @@ io.on("connection", function(socket) {
         clientInfo[socket.id] = req;
         socket.nickname = req.name;
         
-        if (userInfo[req.room] == undefined) {
-            userInfo[req.room] = [req.name];
-        } else {
-            userInfo[req.room].push(req.name);
-        }
-        
         socket.join(req.room);
         io.to(req.room).emit("join", {
             name: "Alert",
-            text: req.name + " has joined the room!",
-            users: userInfo[req.room]
+            text: req.name + " has joined the room!"
         });
     });
     

@@ -19,6 +19,7 @@ socket.on("connect", function() {
 
 socket.on("join", function(join) {
     addMessage(join);
+    getNicknames();
 });
 
 //recieving a new message
@@ -91,8 +92,6 @@ function setUsers(users) {
     $( ".usernames" ).remove();
     for (i = 0; i < users.length; i++) {
         var user = users[i];
-        console.log(user);
-        console.log(user.username);
         $username.append('<h3 class="usernames">' + user.username + '</h3>');
     }
 }
@@ -109,7 +108,6 @@ function createNickname() {
 }
 
 socket.on("nicknameChanged", function(message) { 
-    console.log("changing nicknameeee");
     getNicknames();
 });
 
@@ -119,7 +117,6 @@ function getNicknames() {
             alert("there was an error: " + data);
         } else {
             //successful
-            console.log(data);
             setUsers(data);
         }
     });
