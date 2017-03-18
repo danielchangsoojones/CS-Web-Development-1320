@@ -80,9 +80,9 @@ function loadMessagesIntoUI(data) {
     }
 }
 
-//loading/removing the current users for the chatroom
+//changing and removing usernames
 socket.on("removeUser", function(req) {
-    setUsers(req.users);
+    getNicknames();
 });
 
 function setUsers(users) {

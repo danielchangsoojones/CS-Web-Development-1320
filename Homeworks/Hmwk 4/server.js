@@ -39,12 +39,19 @@ io.on("connection", function(socket) {
     socket.on('disconnect', function(){
         //remove the particular user from a chatroom
         var room = clientInfo[socket.id].room;
-        var users = userInfo[room];
-        var idx = users.indexOf(socket.nickname);
-        users.splice(idx, 1);
-        userInfo[room] = users;
-        io.to(room).emit("removeUser", {
-            users: users
+        console.log(room);
+        console.log(socket.nickname);
+        
+        db.user.destroy({
+            where: {
+                room: room,
+                username: socket.nickname
+            }
+        }).then(function(user) {
+            io.to(room).emit("removeUser", {});
+            res.json(user);
+        }, function(error) {
+            res.status(400).json(error);
         });
     });
     
