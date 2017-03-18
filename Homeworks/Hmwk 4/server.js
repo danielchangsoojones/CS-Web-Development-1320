@@ -53,6 +53,19 @@ io.on("connection", function(socket) {
         //finding the particular room to emit to
         io.to(clientInfo[socket.id].room).emit("message", message);
     });
+    
+    // an error occured with sockets
+    socket.on('error', function(){
+        // tells the chatroom that an error has occured.
+        var room = clientInfo[socket.id].room;
+        io.to(room).emit("message", {
+            name: "Error",
+            room: room,
+            text: "An error has occurred"
+        });
+        console.log("socket error occurred");
+    });
+
 });
 
 db.sequelize.sync().then(function() {
