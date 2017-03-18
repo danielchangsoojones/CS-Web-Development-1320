@@ -18,7 +18,7 @@ socket.on("connect", function() {
 
 socket.on("join", function(join) {
     addMessage(join);
-    addUsers(join.users);
+    setUsers(join.users);
 });
 
 //recieving a new message
@@ -81,10 +81,24 @@ function loadMessagesIntoUI(data) {
 }
 
 //loading the current users for the chatroom
-function addUsers(users) {
+//function addUsers(users) {
+//    for (i = 0; i < users.length; i++) {
+//        var user = users[i];
+//        var $username = jQuery(".users");
+//        $username.append("<p><strong>" + user + '</strong></p>');
+//    }
+//}
+
+socket.on("removeUser", function(req) {
+    setUsers(req.users);
+});
+
+function setUsers(users) {
+    var $username = jQuery(".users");
+    //reset html elements
+    $( ".hello" ).remove();
     for (i = 0; i < users.length; i++) {
         var user = users[i];
-        var $username = jQuery(".users");
-        $username.append("<p><strong>" + user + '</strong></p>');
+        $username.append('<h3 class="hello">' + user + '</h3>');
     }
 }

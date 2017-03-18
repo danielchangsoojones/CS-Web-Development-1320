@@ -19,6 +19,7 @@ io.on("connection", function(socket) {
     
     socket.on("joinRoom", function (req) {
         clientInfo[socket.id] = req;
+        socket.nickname = req.name;
         
         if (userInfo[req.room] == undefined) {
             userInfo[req.room] = [req.name];
@@ -31,6 +32,19 @@ io.on("connection", function(socket) {
             name: "Alert",
             text: req.name + " has joined the room!",
             users: userInfo[req.room]
+        });
+    });
+    
+    // add event handlers for this user
+    socket.on('disconnect', function(){
+        //remove the particular user from a chatroom
+        var room = clientInfo[socket.id].room;
+        var users = userInfo[room];
+        var idx = users.indexOf(socket.nickname);
+        users.splice(idx, 1);
+        userInfo[room] = users;
+        io.to(room).emit("removeUser", {
+            users: users
         });
     });
     
